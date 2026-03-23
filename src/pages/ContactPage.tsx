@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Instagram, MapPin, Clock, Mail, Send } from "lucide-react";
+import { Phone, MessageCircle, Instagram, Facebook, MapPin, Clock, Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";

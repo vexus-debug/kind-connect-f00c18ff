@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Facebook, Instagram } from "lucide-react";
 import logo from "@/assets/logo-smile365.png";
 
 const Footer = () => {
@@ -14,9 +15,27 @@ const Footer = () => {
                 <span className="block text-xs font-body text-primary-foreground/60 tracking-wider uppercase">Dental Clinic</span>
               </div>
             </Link>
-            <p className="font-body text-sm text-primary-foreground/60 leading-relaxed">
+            <p className="font-body text-sm text-primary-foreground/60 leading-relaxed mb-5">
               Modern, affordable, and patient-centered dental care for healthy smiles year-round.
             </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.facebook.com/smile365star"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-9 w-9 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground/60 hover:bg-[#1877F2] hover:text-white transition-colors"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/smile365star"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-9 w-9 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground/60 hover:bg-[#E4405F] hover:text-white transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           <div>

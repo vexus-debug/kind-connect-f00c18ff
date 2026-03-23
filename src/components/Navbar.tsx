@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Facebook, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo-smile365.png";
 
@@ -46,6 +46,13 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
+          <a href="https://www.facebook.com/smile365star" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#1877F2] transition-colors">
+            <Facebook className="h-4 w-4" />
+          </a>
+          <a href="https://www.instagram.com/smile365star" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#E4405F] transition-colors">
+            <Instagram className="h-4 w-4" />
+          </a>
+          <span className="w-px h-5 bg-border" />
           <a href="tel:+2348165257737" className="flex items-center gap-2 text-sm text-primary font-medium">
             <Phone className="h-4 w-4" />
             +234 816 525 7737
@@ -76,6 +83,14 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <div className="flex items-center gap-4 pt-3 border-t border-border">
+            <a href="https://www.facebook.com/smile365star" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#1877F2] transition-colors">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="https://www.instagram.com/smile365star" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#E4405F] transition-colors">
+              <Instagram className="h-5 w-5" />
+            </a>
+          </div>
           <Button asChild className="w-full mt-3">
             <Link to="/contact" onClick={() => setIsOpen(false)}>Book Appointment</Link>
           </Button>
