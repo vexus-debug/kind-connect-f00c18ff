@@ -38,11 +38,12 @@ const contactMethods = [
     ],
   },
   {
-    icon: Instagram,
+    icon: Facebook,
     title: "Social Media",
     desc: "Follow us for updates",
     items: [
-      { label: "Instagram", value: "@smile365star", href: "https://instagram.com/smile365star" },
+      { label: "Facebook", value: "Smile 365 Star", href: "https://www.facebook.com/smile365star" },
+      { label: "Instagram", value: "@smile365star", href: "https://www.instagram.com/smile365star" },
     ],
   },
 ];
