@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Heart, Sparkles, Users, Target, Eye, Award, CheckCircle } from "lucide-react";
+import { Shield, Heart, Sparkles, Users, Target, Eye, Award, CheckCircle, Star, Clock, MapPin, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -7,6 +7,14 @@ import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import clinicImg from "@/assets/clinic-interior.jpg";
 import dentistImg from "@/assets/dentist-team.jpg";
+import waitingArea from "@/assets/gallery/waiting-area.jpg";
+import treatmentRoom from "@/assets/gallery/treatment-room.jpg";
+import receptionDesk from "@/assets/gallery/reception-desk.jpg";
+import dentalTeam from "@/assets/gallery/dental-team.jpg";
+import loungeArea from "@/assets/gallery/lounge-area.jpg";
+import dentistAtWork from "@/assets/gallery/dentist-at-work.jpg";
+import anniversaryBanner from "@/assets/gallery/anniversary-banner.jpg";
+import clinicEntrance from "@/assets/gallery/clinic-entrance.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -15,18 +23,25 @@ const fadeUp = {
   transition: { duration: 0.5 },
 };
 
+const stats = [
+  { number: "5,000+", label: "Happy Patients", icon: Heart },
+  { number: "3", label: "Branches", icon: MapPin },
+  { number: "15+", label: "Specialists", icon: Stethoscope },
+  { number: "24/7", label: "Emergency Care", icon: Clock },
+];
+
 const values = [
-  { icon: Shield, title: "Advanced Technology", desc: "We invest in cutting-edge digital scanners, 3D imaging, and modern sterilization systems to ensure the most accurate diagnoses and comfortable treatments." },
-  { icon: Heart, title: "Patient Comfort", desc: "Every procedure is designed around your comfort. Our pain-minimizing techniques and gentle approach ensure a stress-free experience every visit." },
-  { icon: Sparkles, title: "Expert Clinicians", desc: "Our team of internationally trained dentists and orthodontists bring years of specialized experience across cosmetic, restorative, and general dentistry." },
-  { icon: Users, title: "Family Focused", desc: "From your child's first dental visit to advanced procedures for adults, we provide comprehensive care tailored to every family member." },
+  { icon: Shield, title: "Advanced Technology", desc: "We invest in cutting-edge digital scanners, 3D imaging, and modern sterilization systems to ensure the most accurate diagnoses and comfortable treatments.", color: "bg-primary/10 text-primary" },
+  { icon: Heart, title: "Patient Comfort", desc: "Every procedure is designed around your comfort. Our pain-minimizing techniques and gentle approach ensure a stress-free experience every visit.", color: "bg-accent/10 text-accent" },
+  { icon: Sparkles, title: "Expert Clinicians", desc: "Our team of internationally trained dentists and orthodontists bring years of specialized experience across cosmetic, restorative, and general dentistry.", color: "bg-primary/10 text-primary" },
+  { icon: Users, title: "Family Focused", desc: "From your child's first dental visit to advanced procedures for adults, we provide comprehensive care tailored to every family member.", color: "bg-accent/10 text-accent" },
 ];
 
 const milestones = [
-  { year: "2023", title: "Founded in Port Harcourt", desc: "Opened our flagship clinic at 61 Stadium Road with state-of-the-art equipment." },
-  { year: "2023", title: "Aba Branch Launch", desc: "Expanded to Abia State to serve more communities in the South East." },
-  { year: "2024", title: "Owerri Branch Opening", desc: "Brought modern dental care to Imo State with our third branch." },
-  { year: "2024", title: "5,000+ Patients Served", desc: "Reached a milestone of over 5,000 happy patients across all branches." },
+  { year: "2023", title: "Founded in Port Harcourt", desc: "Opened our flagship clinic at 61 Stadium Road with state-of-the-art equipment.", image: clinicEntrance },
+  { year: "2023", title: "Aba Branch Launch", desc: "Expanded to Abia State to serve more communities in the South East.", image: receptionDesk },
+  { year: "2024", title: "Owerri Branch Opening", desc: "Brought modern dental care to Imo State with our third branch.", image: loungeArea },
+  { year: "2024", title: "5,000+ Patients Served", desc: "Reached a milestone of over 5,000 happy patients across all branches.", image: anniversaryBanner },
 ];
 
 const AboutPage = () => {
@@ -41,37 +56,92 @@ const AboutPage = () => {
         breadcrumb="About Us"
       />
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-card">
+      {/* Stats Banner */}
+      <section className="relative -mt-12 z-10">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div {...fadeUp} className="bg-background rounded-2xl p-8 border border-border shadow-card">
-              <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                <Target className="h-7 w-7 text-primary" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-background rounded-2xl border border-border shadow-elevated p-6 md:p-8"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <stat.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="font-display text-2xl md:text-3xl font-bold text-foreground">{stat.number}</div>
+                  <div className="font-body text-sm text-muted-foreground mt-1">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission & Vision — Offset Overlap Cards */}
+      <section className="py-20 md:py-28 bg-card">
+        <div className="container mx-auto px-4">
+          <motion.div {...fadeUp} className="text-center mb-16">
+            <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">Our Purpose</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
+              Driven by a <span className="text-primary">Greater Mission</span>
+            </h2>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl transform rotate-2 group-hover:rotate-1 transition-transform" />
+              <div className="relative bg-background rounded-3xl p-8 md:p-10 border border-border">
+                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-6">
+                  <Target className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Mission</h3>
+                <p className="font-body text-muted-foreground leading-relaxed">
+                  To help individuals and families achieve healthy, confident smiles through accessible, modern, and patient-centered dentistry. We combine advanced technology with compassionate care to deliver exceptional oral healthcare experiences.
+                </p>
               </div>
-              <h2 className="font-display text-2xl font-bold text-foreground mb-4">Our Mission</h2>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                To help individuals and families achieve healthy, confident smiles through accessible, modern, and patient-centered dentistry. We are committed to combining advanced technology with compassionate care to deliver exceptional oral healthcare experiences.
-              </p>
             </motion.div>
-            <motion.div {...fadeUp} className="bg-background rounded-2xl p-8 border border-border shadow-card">
-              <div className="h-14 w-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
-                <Eye className="h-7 w-7 text-accent" />
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative group md:mt-8"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl transform -rotate-2 group-hover:-rotate-1 transition-transform" />
+              <div className="relative bg-background rounded-3xl p-8 md:p-10 border border-border">
+                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center mb-6">
+                  <Eye className="h-8 w-8 text-accent-foreground" />
+                </div>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Vision</h3>
+                <p className="font-body text-muted-foreground leading-relaxed">
+                  To become Nigeria's most trusted dental care provider, recognized for clinical excellence, innovative technology, and a relentless focus on patient satisfaction — making quality dental care accessible to every Nigerian.
+                </p>
               </div>
-              <h2 className="font-display text-2xl font-bold text-foreground mb-4">Our Vision</h2>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                To become Nigeria's most trusted dental care provider, recognized for clinical excellence, innovative technology, and a relentless focus on patient satisfaction. We envision a future where quality dental care is accessible to every Nigerian.
-              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-20 bg-gradient-mint">
+      {/* Story Section — Immersive Image Grid */}
+      <section className="py-20 md:py-28 bg-gradient-mint overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div {...fadeUp}>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div {...fadeUp} className="order-2 lg:order-1">
               <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">Our Story</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
                 Built on a Passion for <span className="text-primary">Better Smiles</span>
@@ -81,32 +151,62 @@ const AboutPage = () => {
                   Smile 365 Star Dental Clinic was founded in 2023 with a clear mission: to bring world-class dental care closer to Nigerians. Starting with our flagship clinic in Port Harcourt, we quickly built a reputation for combining advanced dental technology with warm, patient-focused care.
                 </p>
                 <p>
-                  Our founder recognized that many Nigerians lacked access to modern dental services — often traveling abroad for treatments that could be provided locally with the right equipment and expertise. Smile 365 Star was born to bridge that gap.
+                  Our founder recognized that many Nigerians lacked access to modern dental services — often traveling abroad for treatments that could be provided locally with the right equipment and expertise.
                 </p>
                 <p>
-                  Today, with three thriving branches across Rivers, Abia, and Imo States, we continue to grow — driven by the smiles of thousands of satisfied patients and a commitment to making quality dental care accessible to all.
+                  Today, with three thriving branches across Rivers, Abia, and Imo States, we continue to grow — driven by the smiles of thousands of satisfied patients.
                 </p>
               </div>
+              <div className="flex flex-wrap gap-4 mt-8">
+                <div className="bg-primary/10 rounded-xl px-5 py-3">
+                  <span className="font-display text-xl font-bold text-primary">2023</span>
+                  <span className="font-body text-sm text-muted-foreground ml-2">Founded</span>
+                </div>
+                <div className="bg-accent/10 rounded-xl px-5 py-3">
+                  <span className="font-display text-xl font-bold text-accent">3</span>
+                  <span className="font-body text-sm text-muted-foreground ml-2">States</span>
+                </div>
+                <div className="bg-primary/10 rounded-xl px-5 py-3">
+                  <span className="font-display text-xl font-bold text-primary">100%</span>
+                  <span className="font-body text-sm text-muted-foreground ml-2">Commitment</span>
+                </div>
+              </div>
             </motion.div>
-            <motion.div {...fadeUp} className="relative">
-              <img src={clinicImg} alt="Our modern dental clinic" className="rounded-2xl shadow-elevated w-full h-[400px] object-cover" />
-              <div className="absolute -bottom-6 -left-6 bg-primary rounded-2xl p-6 text-primary-foreground shadow-elevated">
-                <div className="text-3xl font-display font-bold">3</div>
-                <div className="text-sm opacity-80">Branches & Growing</div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="order-1 lg:order-2"
+            >
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-3">
+                  <img src={clinicImg} alt="Modern clinic interior" className="rounded-2xl w-full h-48 md:h-56 object-cover shadow-card" />
+                  <img src={waitingArea} alt="Comfortable waiting area" className="rounded-2xl w-full h-32 md:h-40 object-cover shadow-card" />
+                </div>
+                <div className="space-y-3 mt-6">
+                  <img src={treatmentRoom} alt="Treatment room" className="rounded-2xl w-full h-32 md:h-40 object-cover shadow-card" />
+                  <img src={dentistAtWork} alt="Dentist at work" className="rounded-2xl w-full h-48 md:h-56 object-cover shadow-card" />
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-20 bg-card">
+      {/* Core Values — Full-Width Bento Grid */}
+      <section className="py-20 md:py-28 bg-card">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-14">
+          <motion.div {...fadeUp} className="text-center mb-16">
             <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">What Drives Us</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Our Core Values</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
+              Our Core <span className="text-primary">Values</span>
+            </h2>
+            <p className="font-body text-muted-foreground mt-4 max-w-2xl mx-auto">
+              Everything we do is rooted in four guiding principles that shape how we care for you and your family.
+            </p>
           </motion.div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -114,85 +214,150 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-5 bg-background rounded-2xl p-6 border border-border shadow-card"
+                className="group relative bg-background rounded-2xl p-7 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-elevated"
               >
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <v.icon className="h-6 w-6 text-primary" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className={`h-14 w-14 rounded-2xl ${v.color} flex items-center justify-center mb-5`}>
+                  <v.icon className="h-7 w-7" />
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{v.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-                </div>
+                <h3 className="font-display text-xl font-bold text-foreground mb-3">{v.title}</h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-gradient-mint">
+      {/* Team Section — Asymmetric Layout */}
+      <section className="py-20 md:py-28 bg-gradient-mint overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div {...fadeUp}>
-              <img src={dentistImg} alt="Our dental team" className="rounded-2xl shadow-elevated w-full h-[400px] object-cover" />
-            </motion.div>
-            <motion.div {...fadeUp}>
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">
+            <motion.div {...fadeUp} className="lg:col-span-2">
               <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">Our Team</span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
                 Expert Care, <span className="text-primary">Gentle Hands</span>
               </h2>
-              <p className="font-body text-muted-foreground leading-relaxed mb-6">
+              <p className="font-body text-muted-foreground leading-relaxed mb-8">
                 Our clinic is staffed by highly trained dentists, orthodontists, and dental specialists who are passionate about delivering exceptional care.
               </p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {[
-                  "International training and certifications",
-                  "Specialized in cosmetic & orthodontic treatments",
+                  "International training & certifications",
+                  "Cosmetic & orthodontic specialists",
                   "Continuous professional development",
                   "Patient-focused treatment planning",
                   "Gentle care & clear communication",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                ].map((item, i) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary" />
+                    </div>
                     <span className="font-body text-sm text-foreground">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-3"
+            >
+              <div className="grid grid-cols-3 gap-3">
+                <div className="col-span-2">
+                  <img src={dentalTeam} alt="Our dental team" className="rounded-2xl w-full h-64 md:h-80 object-cover shadow-card" />
+                </div>
+                <div className="space-y-3">
+                  <img src={dentistImg} alt="Dentist team" className="rounded-2xl w-full h-[calc(50%-0.375rem)] object-cover shadow-card" />
+                  <img src={dentistAtWork} alt="Dentist performing procedure" className="rounded-2xl w-full h-[calc(50%-0.375rem)] object-cover shadow-card" />
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 bg-card">
+      {/* Journey Timeline — Card-based */}
+      <section className="py-20 md:py-28 bg-card">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-14">
+          <motion.div {...fadeUp} className="text-center mb-16">
             <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">Our Journey</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Key Milestones</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">
+              Key <span className="text-primary">Milestones</span>
+            </h2>
           </motion.div>
-          <div className="max-w-3xl mx-auto space-y-0">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {milestones.map((m, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 relative"
+                transition={{ delay: i * 0.12 }}
+                className="group bg-background rounded-2xl border border-border overflow-hidden hover:shadow-elevated transition-all duration-300"
               >
-                <div className="flex flex-col items-center">
-                  <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-body text-xs font-bold flex-shrink-0 z-10">
-                    {m.year.slice(-2)}
+                <div className="relative h-40 overflow-hidden">
+                  <img src={m.image} alt={m.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+                  <div className="absolute bottom-3 left-3 bg-primary text-primary-foreground font-display font-bold text-sm px-3 py-1 rounded-full">
+                    {m.year}
                   </div>
-                  {i < milestones.length - 1 && <div className="w-0.5 h-full bg-border" />}
                 </div>
-                <div className="pb-10">
-                  <span className="text-xs font-body text-accent font-semibold">{m.year}</span>
-                  <h3 className="font-display text-lg font-bold text-foreground">{m.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground mt-1">{m.desc}</p>
+                <div className="p-5">
+                  <h3 className="font-display text-base font-bold text-foreground mb-2">{m.title}</h3>
+                  <p className="font-body text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Promise Section */}
+      <section className="py-20 md:py-28 bg-gradient-mint">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+            <motion.div {...fadeUp}>
+              <img src={loungeArea} alt="Our welcoming lounge" className="rounded-2xl w-full h-72 md:h-96 object-cover shadow-elevated" />
+            </motion.div>
+            <motion.div {...fadeUp}>
+              <span className="text-sm font-body font-semibold text-accent uppercase tracking-widest">Our Promise</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
+                What Makes Us <span className="text-primary">Different</span>
+              </h2>
+              <div className="space-y-5">
+                {[
+                  { icon: Star, title: "No Compromises on Quality", desc: "We use only premium materials and certified equipment for every procedure." },
+                  { icon: Shield, title: "Transparent Pricing", desc: "No hidden fees. We discuss costs upfront so you can make informed decisions." },
+                  { icon: Award, title: "Satisfaction Guaranteed", desc: "Your comfort and results matter most. We stand behind every treatment." },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex gap-4"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-base font-bold text-foreground">{item.title}</h4>
+                      <p className="font-body text-sm text-muted-foreground mt-1">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
