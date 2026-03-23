@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Smile, Sparkles, Wrench, Stethoscope, Baby, AlertCircle } from "lucide-react";
+import { Smile, Sparkles, Wrench, Stethoscope, Baby, AlertCircle, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -42,7 +44,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24 bg-gradient-mint">
+    <section className="py-24 bg-gradient-mint">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -83,6 +85,14 @@ const ServicesSection = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button size="lg" asChild>
+            <Link to="/services">
+              View All Services <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

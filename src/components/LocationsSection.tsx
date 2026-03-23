@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const branches = [
   {
@@ -24,7 +26,7 @@ const branches = [
 
 const LocationsSection = () => {
   return (
-    <section id="locations" className="py-24 bg-card">
+    <section className="py-24 bg-card">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,6 +91,14 @@ const LocationsSection = () => {
               </a>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button variant="outline" asChild>
+            <Link to="/locations">
+              View All Locations <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

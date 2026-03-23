@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -6,13 +7,13 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+            <Link to="/" className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Smile 365 Star" className="h-12 w-12 object-contain" />
               <div>
                 <span className="font-display text-sm font-bold text-primary-foreground">Smile 365 Star</span>
                 <span className="block text-xs font-body text-primary-foreground/60 tracking-wider uppercase">Dental Clinic</span>
               </div>
-            </div>
+            </Link>
             <p className="font-body text-sm text-primary-foreground/60 leading-relaxed">
               Modern, affordable, and patient-centered dental care for healthy smiles year-round.
             </p>
@@ -22,7 +23,7 @@ const Footer = () => {
             <h4 className="font-display font-bold text-primary-foreground mb-4">Services</h4>
             <ul className="space-y-2 font-body text-sm text-primary-foreground/60">
               {["Orthodontics", "Cosmetic Dentistry", "Dental Implants", "Teeth Whitening", "General Dentistry"].map(s => (
-                <li key={s}><a href="#services" className="hover:text-primary-foreground transition-colors">{s}</a></li>
+                <li key={s}><Link to="/services" className="hover:text-primary-foreground transition-colors">{s}</Link></li>
               ))}
             </ul>
           </div>
@@ -30,8 +31,8 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold text-primary-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2 font-body text-sm text-primary-foreground/60">
-              {[["Home","#home"],["About","#about"],["Services","#services"],["Locations","#locations"],["Contact","#contact"]].map(([l,h]) => (
-                <li key={l}><a href={h} className="hover:text-primary-foreground transition-colors">{l}</a></li>
+              {[["Home","/"],["About","/about"],["Services","/services"],["Locations","/locations"],["Contact","/contact"]].map(([l,h]) => (
+                <li key={l}><Link to={h} className="hover:text-primary-foreground transition-colors">{l}</Link></li>
               ))}
             </ul>
           </div>

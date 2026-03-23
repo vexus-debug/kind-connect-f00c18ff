@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Shield, Heart, Sparkles, Users } from "lucide-react";
+import { Shield, Heart, Sparkles, Users, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import clinicImg from "@/assets/clinic-interior.jpg";
 
 const values = [
@@ -11,7 +13,7 @@ const values = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 bg-card">
+    <section className="py-24 bg-card">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -45,7 +47,7 @@ const AboutSection = () => {
               Rivers, Abia, and Imo States for combining advanced dental technology with patient-focused care.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {values.map((v) => (
                 <div key={v.title} className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
                   <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -58,6 +60,12 @@ const AboutSection = () => {
                 </div>
               ))}
             </div>
+
+            <Button variant="outline" asChild>
+              <Link to="/about">
+                Learn More About Us <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </div>

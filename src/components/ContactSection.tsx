@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MessageCircle, Instagram } from "lucide-react";
+import { Phone, MessageCircle, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 bg-gradient-mint">
+    <section className="py-24 bg-gradient-mint">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -71,9 +72,7 @@ const ContactSection = () => {
                   Get professional dental advice from our expert dentists at no cost.
                 </p>
                 <Button size="lg" asChild className="w-full max-w-xs">
-                  <a href="https://wa.me/2348165257737?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation" target="_blank" rel="noopener noreferrer">
-                    Book via WhatsApp
-                  </a>
+                  <Link to="/contact">Book Appointment</Link>
                 </Button>
               </div>
             </div>

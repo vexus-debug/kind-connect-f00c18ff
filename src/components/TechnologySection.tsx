@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { ScanLine, MonitorSmartphone, Cpu, ShieldCheck } from "lucide-react";
+import { ScanLine, MonitorSmartphone, Cpu, ShieldCheck, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import dentistImg from "@/assets/dentist-team.jpg";
 
 const techItems = [
@@ -11,7 +13,7 @@ const techItems = [
 
 const TechnologySection = () => {
   return (
-    <section id="technology" className="py-24 bg-gradient-hero text-primary-foreground relative overflow-hidden">
+    <section className="py-24 bg-gradient-hero text-primary-foreground relative overflow-hidden">
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)`,
         backgroundSize: '30px 30px'
@@ -33,7 +35,7 @@ const TechnologySection = () => {
               Our investment in modern equipment means better results and more comfortable experiences for you.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {techItems.map((item) => (
                 <div key={item.title} className="flex items-start gap-3 p-4 rounded-xl bg-white/10 backdrop-blur-sm">
                   <div className="h-10 w-10 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
@@ -46,6 +48,12 @@ const TechnologySection = () => {
                 </div>
               ))}
             </div>
+
+            <Button variant="secondary" asChild>
+              <Link to="/technology">
+                Explore Our Technology <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </motion.div>
 
           <motion.div

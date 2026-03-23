@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-smile.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background */}
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-mint" />
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
         <div className="absolute inset-0" style={{
@@ -44,13 +44,13 @@ const HeroSection = () => {
 
             <div className="flex flex-wrap gap-4">
               <Button size="lg" asChild className="text-base px-8">
-                <a href="#contact">
+                <Link to="/contact">
                   Book Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="text-base px-8">
-                <a href="#services">Our Services</a>
+                <Link to="/services">Our Services</Link>
               </Button>
             </div>
 
@@ -78,7 +78,6 @@ const HeroSection = () => {
               <img src={heroImg} alt="Smile 365 Star Dental Clinic - Beautiful Smiles" className="w-full h-[500px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" />
             </div>
-            {/* Floating badge */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
